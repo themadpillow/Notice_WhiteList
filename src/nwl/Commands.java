@@ -177,7 +177,7 @@ public class Commands implements CommandExecutor {
 			int number = Integer.parseInt(args[2]);
 			Message message;
 			if ((message = Main.getMessageList().getMessage(number)) != null) {
-				String[] texts = (String[]) message.getTexts().toArray();
+				String[] texts = message.getTexts().toArray(new String[0]);
 				for (ListPlayer listPlayer : Main.getWhiteList().getList()) {
 					listPlayer.sendMessage(message.getTitle());
 					listPlayer.sendMessage(texts);
