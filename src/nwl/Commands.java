@@ -98,6 +98,9 @@ public class Commands implements CommandExecutor {
 
 		if (args[1].equalsIgnoreCase("add")) {
 			if (Main.getBlackList().add(player)) {
+				if (Main.getNoobList().contains(player)) {
+					Main.getNoobList().remove(player);
+				}
 				sender.sendMessage(Main.Prefix + player.getName() + "をBlackListに追加しました");
 			} else {
 				sender.sendMessage(Main.Prefix + player.getName() + "は既にBlackListに追加済みです");
