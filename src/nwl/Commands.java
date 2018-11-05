@@ -16,7 +16,8 @@ import net.md_5.bungee.api.ChatColor;
 public class Commands implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("nwl")) {
-			if (args[0].equalsIgnoreCase("help")) {
+			if (args.length == 0
+					|| args[0].equalsIgnoreCase("help")) {
 				sendAllHelp(sender);
 			} else if (args[0].equalsIgnoreCase("whitelist")) {
 				whiteListCommand(sender, args);
