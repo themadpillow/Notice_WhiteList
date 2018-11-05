@@ -72,12 +72,12 @@ public class Commands implements CommandExecutor {
 		} else if (args[1].equalsIgnoreCase("list")) {
 			ListPlayer listPlayer;
 			if ((listPlayer = Main.getWhiteList().getListPlayer(player)) != null) {
-				sender.sendMessage(ChatColor.GOLD + "====================");
+				sender.sendMessage(ChatColor.GOLD + "=========================================");
 				sender.sendMessage(ChatColor.GOLD + "MCID: " + ChatColor.BLUE + player.getName());
 				sender.sendMessage(ChatColor.GOLD + "UUID: " + ChatColor.BLUE + player.getUniqueId().toString());
 				sender.sendMessage(ChatColor.GOLD + "Mark: " + ChatColor.BLUE + listPlayer.isMark());
 				sender.sendMessage(ChatColor.GOLD + "Time: " + ChatColor.BLUE + listPlayer.getDate().toString());
-				sender.sendMessage(ChatColor.GOLD + "====================");
+				sender.sendMessage(ChatColor.GOLD + "=========================================");
 			} else {
 				sender.sendMessage(Main.Prefix + player.getName() + "はWhiteListに存在しません");
 			}
@@ -162,11 +162,11 @@ public class Commands implements CommandExecutor {
 		} else if (args[1].equalsIgnoreCase("list")) {
 			Map<Integer, Message> messageMap = Main.getMessageList().getMessageMap();
 			Set<Integer> keys = messageMap.keySet();
-			sender.sendMessage(ChatColor.GOLD + "====================");
+			sender.sendMessage(ChatColor.GOLD + "=========================================");
 			for (int key : keys) {
 				sender.sendMessage(ChatColor.GREEN + (key + ": " + messageMap.get(key).getTitle()));
 			}
-			sender.sendMessage(ChatColor.GOLD + "====================");
+			sender.sendMessage(ChatColor.GOLD + "=========================================");
 		} else if (args[1].equalsIgnoreCase("send")) {
 			if (args.length != 3
 					|| !args[2].matches("[0-9]*")) {
