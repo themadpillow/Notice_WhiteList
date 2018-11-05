@@ -16,7 +16,7 @@ public class Events implements Listener {
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					if (player.isOp()) {
 						player.sendMessage(
-								Main.Prefix + ChatColor.RED + "警告:" + player.getName() + "はBlackListに登録されています");
+								Main.Prefix + ChatColor.RED + "警告:" + e.getPlayer().getName() + "はBlackListに登録されています");
 					}
 				}
 			} else if (!Main.getNoobList().contains(e.getPlayer())) {
