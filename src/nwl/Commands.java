@@ -27,6 +27,7 @@ public class Commands implements CommandExecutor {
 				noticeCommand(sender, args);
 			} else if (args[0].equalsIgnoreCase("reload")) {
 				Main.reloadConfigs();
+				sender.sendMessage(Main.Prefix + "config及びListDataを読み込みました");
 			}
 
 			return true;
