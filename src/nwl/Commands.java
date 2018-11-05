@@ -28,6 +28,8 @@ public class Commands implements CommandExecutor {
 			} else if (args[0].equalsIgnoreCase("reload")) {
 				Main.reloadConfigs();
 				sender.sendMessage(Main.Prefix + "config及びListDataを読み込みました");
+			} else {
+				sendAllHelp(sender);
 			}
 
 			return true;
@@ -182,9 +184,14 @@ public class Commands implements CommandExecutor {
 			if ((message = Main.getMessageList().getMessage(number)) != null) {
 				String[] texts = message.getTexts().toArray(new String[0]);
 				for (ListPlayer listPlayer : Main.getWhiteList().getList()) {
-					listPlayer.sendMessage(message.getTitle());
-					listPlayer.sendMessage(texts);
+					if (!listPlayer.isMark()) {
+						listPlayer.sendMessage(message.getTitle());
+						listPlayer.sendMessage(texts);
+					}
 				}
+				sender.sendMessage(Main.Prefix + number + "番:" + message.getTitle() + "を送信しました");
+			} else {
+				sender.sendMessage(Main.Prefix + "指定されたお知らせ番号は存在しません");
 			}
 		}
 	}
