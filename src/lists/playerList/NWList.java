@@ -33,9 +33,9 @@ public class NWList {
 		list = new ArrayList<>();
 		loadFile(fileName);
 	}
-	
+
 	private void fileExistsCheck() {
-		if(!file.exists()) {
+		if (!file.exists()) {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {

@@ -49,7 +49,7 @@ public class Commands implements CommandExecutor {
 		if (args[1].equalsIgnoreCase("add")) {
 			if (Main.getWhiteList().add(player)) {
 				sender.sendMessage(Main.Prefix + player.getName() + "をWhiteListに追加しました");
-				if(Main.getNoobList().contains(player)) {
+				if (Main.getNoobList().contains(player)) {
 					Main.getNoobList().remove(player);
 				}
 			} else {
