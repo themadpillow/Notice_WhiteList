@@ -189,49 +189,49 @@ public class Commands implements CommandExecutor {
 		sendWhiteListHelp(sender);
 		sendBlackListHelp(sender);
 		sendNoticeHelp(sender);
-		sender.sendMessage(Main.Prefix + "/nwl reload"
+		sender.sendMessage(ChatColor.RED + "/nwl reload"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "config及びListの再読み込み");
 	}
 
 	private void sendWhiteListHelp(CommandSender sender) {
-		sender.sendMessage(Main.Prefix + "/nwl whitelist add <MCID>"
+		sender.sendMessage(ChatColor.RED + "/nwl whitelist add <MCID>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "NWL-WhiteListにUUIDを保存");
-		sender.sendMessage(Main.Prefix + "/nwl whitelist remove <MCID>"
+		sender.sendMessage(ChatColor.RED + "/nwl whitelist remove <MCID>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "NWL-WhiteListからUUIDを削除");
-		sender.sendMessage(Main.Prefix + "/nwl whitelist mark <MCID>"
+		sender.sendMessage(ChatColor.RED + "/nwl whitelist mark <MCID>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "NWL-WhiteListのUUIDに★を付与");
-		sender.sendMessage(Main.Prefix + "/nwl whiteist list <MCID>"
+		sender.sendMessage(ChatColor.RED + "/nwl whiteist list <MCID>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "指定したプレイヤーのUUID・マークの有無・書き込み日付の表示");
 	}
 
 	private void sendBlackListHelp(CommandSender sender) {
-		sender.sendMessage(Main.Prefix + "/nwl blacklist add <MCID>"
+		sender.sendMessage(ChatColor.RED + "/nwl blacklist add <MCID>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "NWL-BlackListにUUIDを保存");
-		sender.sendMessage(Main.Prefix + "/nwl blacklist remove <MCID>"
+		sender.sendMessage(ChatColor.RED + "/nwl blacklist remove <MCID>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "NWL-BlackListからUUIDを削除");
 	}
 
 	private void sendNoticeHelp(CommandSender sender) {
-		sender.sendMessage(Main.Prefix + "/nwl notice create <お知らせ番号> <題名>"
+		sender.sendMessage(ChatColor.RED + "/nwl notice create <お知らせ番号> <題名>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "お知らせを作成");
-		sender.sendMessage(Main.Prefix + "/nwl notice add <お知らせ番号> <本文>"
+		sender.sendMessage(ChatColor.RED + "/nwl notice add <お知らせ番号> <本文>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "指定したお知らせに本文追加");
-		sender.sendMessage(Main.Prefix + "/nwl notice remove <お知らせ番号>"
+		sender.sendMessage(ChatColor.RED + "/nwl notice remove <お知らせ番号>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "お知らせ削除");
-		sender.sendMessage(Main.Prefix + "/nwl notice list"
+		sender.sendMessage(ChatColor.RED + "/nwl notice list"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "お知らせリストを表示");
-		sender.sendMessage(Main.Prefix + "/nwl notice send <お知らせ番号>"
+		sender.sendMessage(ChatColor.RED + "/nwl notice send <お知らせ番号>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "WhiteListのプレイヤーに指定したお知らせを送る");
 	}
