@@ -1,0 +1,11 @@
+name: Notice_WhiteList
+version: 1.0.0
+main: nwl.Main
+commands:
+ nwl:
+   usage: /<command>
+   permission: nwlop
+   permission-message: "§4このコマンドを実行するための権限がありません！"
+permissions:
+  nwlop:
+    default: op
