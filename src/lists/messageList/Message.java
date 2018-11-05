@@ -29,10 +29,11 @@ public class Message {
 	}
 
 	public void addText(String text) {
-		texts.add(text.replaceAll("$", "§"));
+		texts.add(text);
 	}
 
 	private void setTexts(List<String> texts) {
-		this.texts = texts;
+		this.texts = new ArrayList<>();
+		this.texts.addAll(texts);
 	}
 }
