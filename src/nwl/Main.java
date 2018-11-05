@@ -20,12 +20,15 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		setPlugin(this);
-		
+		if (!getPlugin().getDataFolder().exists()) {
+			getPlugin().getDataFolder().mkdirs();
+		}
+
 		setWhiteList(new NWList(ListNames.WhiteList));
 		setBlackList(new NWList(ListNames.BlackList));
 		setNoobList(new NWList(ListNames.NoobList));
 		setMessageList(new MessageList());
-		
+
 		Bukkit.getPluginManager().registerEvents(new Events(), this);
 		getCommand("nwl").setExecutor(new Commands());
 	}
@@ -37,7 +40,7 @@ public class Main extends JavaPlugin {
 	private void setPlugin(JavaPlugin plugin) {
 		Main.plugin = plugin;
 	}
-	
+
 	public static void reloadConfigs() {
 		whiteList.reload();
 		blackList.reload();
