@@ -57,7 +57,7 @@ public class MessageList {
 				} else if (line.startsWith(" Number:")) {
 					number = Integer.parseInt(line.substring(line.indexOf(" number: ")));
 				} else if (line.startsWith("  ")) {
-					texts.add(line.substring(2));
+					texts.add(line.substring(2).replaceAll("$", "§"));
 				} else if (line.startsWith("\n")) {
 					Message message = new Message(title, texts);
 					messageMap.put(number, message);
@@ -139,7 +139,7 @@ public class MessageList {
 		pWriter.println(" " + "Number: " + number);
 		pWriter.println(" " + "Messages:");
 		for (String text : message.getTexts()) {
-			pWriter.println("  " + text);
+			pWriter.println("  " + text.replaceAll("§", "$"));
 		}
 		pWriter.println();
 		pWriter.close();

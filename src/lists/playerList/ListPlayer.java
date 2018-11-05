@@ -24,10 +24,10 @@ public class ListPlayer {
 				LocalDateTime.now(), false);
 	}
 
-	public void sendMessage(String... message) {
+	public void sendMessage(String... messages) {
 		Player player;
 		if ((player = Bukkit.getServer().getPlayer(uuid)) != null) {
-			player.sendMessage(message);
+			player.sendMessage(messages);
 		}
 	}
 

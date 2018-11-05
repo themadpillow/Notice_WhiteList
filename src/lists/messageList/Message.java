@@ -29,7 +29,7 @@ public class Message {
 	}
 
 	public void addText(String text) {
-		texts.add(text);
+		texts.add(text.replaceAll("$", "§"));
 	}
 
 	private void setTexts(List<String> texts) {
