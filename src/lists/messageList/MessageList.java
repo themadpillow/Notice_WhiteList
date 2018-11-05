@@ -53,7 +53,7 @@ public class MessageList {
 						messageMap.put(number, message);
 						texts.clear();
 					}
-					title = line.replaceAll(":", "");
+					title = line.replaceAll(":", "").replaceAll("\\$", "§");
 				} else if (line.startsWith(" Number:")) {
 					number = Integer.parseInt(line.substring(9));
 				} else if (line.startsWith("  ")) {
@@ -135,7 +135,7 @@ public class MessageList {
 	}
 
 	private void writeToFile(int number, Message message, PrintWriter pWriter) {
-		pWriter.println(message.getTitle() + ":");
+		pWriter.println(message.getTitle().replaceAll("§", "\\$") + ":");
 		pWriter.println(" " + "Number: " + number);
 		pWriter.println(" " + "Messages:");
 		for (String text : message.getTexts()) {
