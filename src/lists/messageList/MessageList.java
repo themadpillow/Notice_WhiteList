@@ -53,11 +53,11 @@ public class MessageList {
 						messageMap.put(number, message);
 						texts.clear();
 					}
-					title = line.replaceAll(":", "").replaceAll("\\$", "§");
+					title = line.replaceAll(":", "");
 				} else if (line.startsWith(" Number:")) {
 					number = Integer.parseInt(line.substring(9));
 				} else if (line.startsWith("  ")) {
-					texts.add(line.substring(2).replaceAll("\\$", "§"));
+					texts.add(line.substring(2));
 				} else if (line.startsWith("\n")) {
 					Message message = new Message(title, texts);
 					messageMap.put(number, message);

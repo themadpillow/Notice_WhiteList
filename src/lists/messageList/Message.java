@@ -8,6 +8,7 @@ public class Message {
 	private List<String> texts;
 
 	public Message(String title, List<String> texts) {
+		this.texts = new ArrayList<>();
 		this.setTitle(title);
 		this.setTexts(texts);
 	}
@@ -21,7 +22,8 @@ public class Message {
 	}
 
 	private void setTitle(String title) {
-		this.title = title;
+		this.title = title.replaceAll("\\$", "§");
+		;
 	}
 
 	public List<String> getTexts() {
@@ -29,11 +31,12 @@ public class Message {
 	}
 
 	public void addText(String text) {
-		texts.add(text);
+		texts.add(text.replaceAll("\\$", "§"));
 	}
 
 	private void setTexts(List<String> texts) {
-		this.texts = new ArrayList<>();
-		this.texts.addAll(texts);
+		for (String text : texts) {
+			addText(text);
+		}
 	}
 }
