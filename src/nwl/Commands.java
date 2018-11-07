@@ -60,6 +60,7 @@ public class Commands implements CommandExecutor {
 			}
 		} else if (args[1].equalsIgnoreCase("remove")) {
 			if (Main.getWhiteList().remove(listPlayer)) {
+				Main.getNoobList().add(listPlayer);
 				sender.sendMessage(Main.Prefix + listPlayer.getName() + "をWhiteListから削除しました");
 			} else {
 				sender.sendMessage(Main.Prefix + listPlayer.getName() + "はWhiteListに存在しません");
@@ -108,6 +109,7 @@ public class Commands implements CommandExecutor {
 			}
 		} else if (args[1].equalsIgnoreCase("remove")) {
 			if (Main.getBlackList().remove(listPlayer)) {
+				Main.getNoobList().add(listPlayer);
 				sender.sendMessage(Main.Prefix + listPlayer.getName() + "をBlackListから削除しました");
 			} else {
 				sender.sendMessage(Main.Prefix + listPlayer.getName() + "はBlackListに存在しません");
