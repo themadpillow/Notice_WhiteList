@@ -216,7 +216,7 @@ public class Commands implements CommandExecutor {
 		sender.sendMessage(ChatColor.RED + "/nwl whitelist mark <MCID>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "NWL-WhiteListのUUIDに★を付与");
-		sender.sendMessage(ChatColor.RED + "/nwl whiteist list <MCID>"
+		sender.sendMessage(ChatColor.RED + "/nwl whitelist list <MCID>"
 				+ ChatColor.YELLOW + " => "
 				+ ChatColor.GREEN + "指定したプレイヤーのUUID・マークの有無・書き込み日付の表示");
 	}
