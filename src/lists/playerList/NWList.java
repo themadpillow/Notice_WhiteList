@@ -75,20 +75,22 @@ public class NWList {
 
 	public boolean add(Player player) {
 		ListPlayer addPlayer = new ListPlayer(player);
-
-		if (contains(player)) {
+		return add(addPlayer);
+	}
+	
+	public boolean add(ListPlayer listPlayer) {
+		if (contains(listPlayer)) {
 			return false;
 		}
-		list.add(addPlayer);
-		addToFile(addPlayer);
+		list.add(listPlayer);
+		addToFile(listPlayer);
 
 		return true;
-
 	}
-
-	public boolean remove(Player player) {
+	
+	public boolean remove(UUID UUID) {
 		ListPlayer removePlayer;
-		if ((removePlayer = getListPlayer(player)) != null) {
+		if ((removePlayer = getListPlayer(UUID)) != null) {
 			list.remove(removePlayer);
 			saveToFile();
 			return true;
@@ -96,23 +98,47 @@ public class NWList {
 		return false;
 	}
 
-	public boolean contains(Player player) {
+	public boolean remove(Player player) {
+		return remove(player.getUniqueId());
+	}
+	
+	public boolean remove(ListPlayer listPlayer) {
+		return remove(listPlayer.getUUID());
+	}
+	
+	public boolean contains(UUID UUID) {
 		for (ListPlayer listPlayer : list) {
-			if (listPlayer.getUUID().equals(player.getUniqueId())) {
+			if (listPlayer.getUUID().equals(UUID)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean setMark(Player player) {
+	public boolean contains(Player player) {
+		return contains(player.getUniqueId());
+	}
+	
+	public boolean contains(ListPlayer listPlayer) {
+		return contains(listPlayer.getUUID());
+	}
+	
+	public boolean setMark(UUID UUID) {
 		ListPlayer markPlayer;
-		if ((markPlayer = getListPlayer(player)) != null) {
+		if ((markPlayer = getListPlayer(UUID)) != null) {
 			markPlayer.setMark(true);
 			saveToFile();
 			return true;
 		}
 		return false;
+	}
+
+	public boolean setMark(Player player) {
+		return setMark(player.getUniqueId());
+	}
+	
+	public boolean setMark(ListPlayer listPlayer) {
+		return setMark(listPlayer.getUUID());
 	}
 
 	public void addToFile(ListPlayer listPlayer) {
@@ -162,10 +188,23 @@ public class NWList {
 	public List<ListPlayer> getList() {
 		return list;
 	}
+	
+	public ListPlayer getListPlayer(UUID UUID) {
+		for (ListPlayer listPlayer : list) {
+			if (listPlayer.getUUID().equals(UUID)) {
+				return listPlayer;
+			}
+		}
+		return null;
+	}
 
 	public ListPlayer getListPlayer(Player player) {
+		return getListPlayer(player.getUniqueId());
+	}
+	
+	public ListPlayer getListPlayer(String MCID) {
 		for (ListPlayer listPlayer : list) {
-			if (listPlayer.getUUID().equals(player.getUniqueId())) {
+			if (listPlayer.getName().equalsIgnoreCase(MCID)) {
 				return listPlayer;
 			}
 		}

@@ -3,11 +3,9 @@ package nwl;
 import java.util.Map;
 import java.util.Set;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import lists.messageList.Message;
 import lists.playerList.ListPlayer;
@@ -44,44 +42,45 @@ public class Commands implements CommandExecutor {
 			return;
 		}
 
-		Player player;
-		if ((player = Bukkit.getPlayerExact(args[2])) == null) {
+		ListPlayer listPlayer;
+		if ((listPlayer = Main.getNoobList().getListPlayer(args[2])) == null
+				&& (listPlayer = Main.getWhiteList().getListPlayer(args[2])) == null
+				&& (listPlayer = Main.getBlackList().getListPlayer(args[2])) == null) {
 			sender.sendMessage(Main.Prefix + "指定されたPlayerは見つかりませんでした");
 			return;
 		}
 
 		if (args[1].equalsIgnoreCase("add")) {
-			if (Main.getWhiteList().add(player)) {
-				sender.sendMessage(Main.Prefix + player.getName() + "をWhiteListに追加しました");
-				if (Main.getNoobList().contains(player)) {
-					Main.getNoobList().remove(player);
+			if (Main.getWhiteList().add(listPlayer)) {
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "をWhiteListに追加しました");
+				if (Main.getNoobList().contains(listPlayer)) {
+					Main.getNoobList().remove(listPlayer);
 				}
 			} else {
-				sender.sendMessage(Main.Prefix + player.getName() + "は既にWhiteListに追加済みです");
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "は既にWhiteListに追加済みです");
 			}
 		} else if (args[1].equalsIgnoreCase("remove")) {
-			if (Main.getWhiteList().remove(player)) {
-				sender.sendMessage(Main.Prefix + player.getName() + "をWhiteListから削除しました");
+			if (Main.getWhiteList().remove(listPlayer)) {
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "をWhiteListから削除しました");
 			} else {
-				sender.sendMessage(Main.Prefix + player.getName() + "はWhiteListに存在しません");
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "はWhiteListに存在しません");
 			}
 		} else if (args[1].equalsIgnoreCase("mark")) {
-			if (Main.getWhiteList().setMark(player)) {
-				sender.sendMessage(Main.Prefix + player.getName() + "に★を付与しました");
+			if (Main.getWhiteList().setMark(listPlayer)) {
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "に★を付与しました");
 			} else {
-				sender.sendMessage(Main.Prefix + player.getName() + "はWhiteListに存在しません");
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "はWhiteListに存在しません");
 			}
 		} else if (args[1].equalsIgnoreCase("list")) {
-			ListPlayer listPlayer;
-			if ((listPlayer = Main.getWhiteList().getListPlayer(player)) != null) {
+			if (Main.getWhiteList().contains(listPlayer)) {
 				sender.sendMessage(ChatColor.GOLD + "=========================================");
-				sender.sendMessage(ChatColor.GOLD + "MCID: " + ChatColor.BLUE + player.getName());
-				sender.sendMessage(ChatColor.GOLD + "UUID: " + ChatColor.BLUE + player.getUniqueId().toString());
+				sender.sendMessage(ChatColor.GOLD + "MCID: " + ChatColor.BLUE + listPlayer.getName());
+				sender.sendMessage(ChatColor.GOLD + "UUID: " + ChatColor.BLUE + listPlayer.getUUID().toString());
 				sender.sendMessage(ChatColor.GOLD + "Mark: " + ChatColor.BLUE + listPlayer.isMark());
 				sender.sendMessage(ChatColor.GOLD + "Time: " + ChatColor.BLUE + listPlayer.getDate().toString());
 				sender.sendMessage(ChatColor.GOLD + "=========================================");
 			} else {
-				sender.sendMessage(Main.Prefix + player.getName() + "はWhiteListに存在しません");
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "はWhiteListに存在しません");
 			}
 		}
 	}
@@ -92,26 +91,28 @@ public class Commands implements CommandExecutor {
 			return;
 		}
 
-		Player player;
-		if ((player = Bukkit.getPlayerExact(args[2])) == null) {
+		ListPlayer listPlayer;
+		if ((listPlayer = Main.getNoobList().getListPlayer(args[2])) == null
+				&& (listPlayer = Main.getWhiteList().getListPlayer(args[2])) == null
+				&& (listPlayer = Main.getBlackList().getListPlayer(args[2])) == null) {
 			sender.sendMessage(Main.Prefix + "指定されたPlayerは見つかりませんでした");
 			return;
 		}
 
 		if (args[1].equalsIgnoreCase("add")) {
-			if (Main.getBlackList().add(player)) {
-				if (Main.getNoobList().contains(player)) {
-					Main.getNoobList().remove(player);
+			if (Main.getBlackList().add(listPlayer)) {
+				if (Main.getNoobList().contains(listPlayer)) {
+					Main.getNoobList().remove(listPlayer);
 				}
-				sender.sendMessage(Main.Prefix + player.getName() + "をBlackListに追加しました");
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "をBlackListに追加しました");
 			} else {
-				sender.sendMessage(Main.Prefix + player.getName() + "は既にBlackListに追加済みです");
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "は既にBlackListに追加済みです");
 			}
 		} else if (args[1].equalsIgnoreCase("remove")) {
-			if (Main.getBlackList().remove(player)) {
-				sender.sendMessage(Main.Prefix + player.getName() + "をBlackListから削除しました");
+			if (Main.getBlackList().remove(listPlayer)) {
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "をBlackListから削除しました");
 			} else {
-				sender.sendMessage(Main.Prefix + player.getName() + "はBlackListに存在しません");
+				sender.sendMessage(Main.Prefix + listPlayer.getName() + "はBlackListに存在しません");
 			}
 		}
 	}
