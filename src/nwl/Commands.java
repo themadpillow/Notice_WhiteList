@@ -53,9 +53,8 @@ public class Commands implements CommandExecutor {
 		if (args[1].equalsIgnoreCase("add")) {
 			if (Main.getWhiteList().add(listPlayer)) {
 				sender.sendMessage(Main.Prefix + listPlayer.getName() + "をWhiteListに追加しました");
-				if (Main.getNoobList().contains(listPlayer)) {
-					Main.getNoobList().remove(listPlayer);
-				}
+				Main.getNoobList().remove(listPlayer);
+				Main.getBlackList().remove(listPlayer);
 			} else {
 				sender.sendMessage(Main.Prefix + listPlayer.getName() + "は既にWhiteListに追加済みです");
 			}
@@ -101,9 +100,8 @@ public class Commands implements CommandExecutor {
 
 		if (args[1].equalsIgnoreCase("add")) {
 			if (Main.getBlackList().add(listPlayer)) {
-				if (Main.getNoobList().contains(listPlayer)) {
-					Main.getNoobList().remove(listPlayer);
-				}
+				Main.getNoobList().remove(listPlayer);
+				Main.getWhiteList().remove(listPlayer);
 				sender.sendMessage(Main.Prefix + listPlayer.getName() + "をBlackListに追加しました");
 			} else {
 				sender.sendMessage(Main.Prefix + listPlayer.getName() + "は既にBlackListに追加済みです");
