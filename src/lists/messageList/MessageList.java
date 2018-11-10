@@ -120,7 +120,7 @@ public class MessageList {
 		writeToFile(number, messageMap.get(number), pWriter);
 	}
 
-	private void saveToFile() {
+	public void saveToFile() {
 		FileWriter fWriter = null;
 		try {
 			fWriter = new FileWriter(file);

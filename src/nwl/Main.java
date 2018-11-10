@@ -33,6 +33,14 @@ public class Main extends JavaPlugin {
 		getCommand("nwl").setExecutor(new Commands());
 	}
 
+	@Override
+	public void onDisable() {
+		whiteList.saveToFile();
+		blackList.saveToFile();
+		noobList.saveToFile();
+		messageList.saveToFile();
+	}
+
 	public static JavaPlugin getPlugin() {
 		return plugin;
 	}
