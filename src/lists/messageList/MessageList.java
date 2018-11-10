@@ -111,9 +111,9 @@ public class MessageList {
 	private void addToFile(int number, Message message) {
 		FileWriter fWriter = null;
 		try {
-			fWriter = new FileWriter(file);
+			fWriter = new FileWriter(file, true);
 		} catch (IOException e) {
-			throw new RuntimeException("ファイルへの書き込みに失敗しました");
+			throw new RuntimeException("ファイルへの追記に失敗しました");
 		}
 		PrintWriter pWriter = new PrintWriter(new BufferedWriter(fWriter));
 
