@@ -51,7 +51,7 @@ public class ListPlayer {
 		return date;
 	}
 
-	private void setDate(LocalDateTime localDateTime) {
+	public void setDate(LocalDateTime localDateTime) {
 		this.date = localDateTime;
 	}
 

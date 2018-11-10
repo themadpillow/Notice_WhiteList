@@ -77,17 +77,18 @@ public class NWList {
 		ListPlayer addPlayer = new ListPlayer(player);
 		return add(addPlayer);
 	}
-	
+
 	public boolean add(ListPlayer listPlayer) {
 		if (contains(listPlayer)) {
 			return false;
 		}
+		listPlayer.setDate(LocalDateTime.now());
 		list.add(listPlayer);
 		addToFile(listPlayer);
 
 		return true;
 	}
-	
+
 	public boolean remove(UUID UUID) {
 		ListPlayer removePlayer;
 		if ((removePlayer = getListPlayer(UUID)) != null) {
@@ -101,11 +102,11 @@ public class NWList {
 	public boolean remove(Player player) {
 		return remove(player.getUniqueId());
 	}
-	
+
 	public boolean remove(ListPlayer listPlayer) {
 		return remove(listPlayer.getUUID());
 	}
-	
+
 	public boolean contains(UUID UUID) {
 		for (ListPlayer listPlayer : list) {
 			if (listPlayer.getUUID().equals(UUID)) {
@@ -118,11 +119,11 @@ public class NWList {
 	public boolean contains(Player player) {
 		return contains(player.getUniqueId());
 	}
-	
+
 	public boolean contains(ListPlayer listPlayer) {
 		return contains(listPlayer.getUUID());
 	}
-	
+
 	public boolean setMark(UUID UUID) {
 		ListPlayer markPlayer;
 		if ((markPlayer = getListPlayer(UUID)) != null) {
@@ -136,7 +137,7 @@ public class NWList {
 	public boolean setMark(Player player) {
 		return setMark(player.getUniqueId());
 	}
-	
+
 	public boolean setMark(ListPlayer listPlayer) {
 		return setMark(listPlayer.getUUID());
 	}
@@ -151,6 +152,7 @@ public class NWList {
 		PrintWriter pWriter = new PrintWriter(new BufferedWriter(fWriter));
 
 		writeToFile(listPlayer, pWriter);
+		pWriter.close();
 	}
 
 	public void saveToFile() {
@@ -161,10 +163,13 @@ public class NWList {
 		} catch (IOException e) {
 			throw new RuntimeException("ファイルへの書き込みに失敗しました");
 		}
-		PrintWriter pWriter = new PrintWriter(new BufferedWriter(fWriter));
+		BufferedWriter bWriter = new BufferedWriter(fWriter);
+		PrintWriter pWriter = new PrintWriter(bWriter);
 		for (ListPlayer listPlayer : list) {
 			writeToFile(listPlayer, pWriter);
 		}
+
+		pWriter.close();
 	}
 
 	private void writeToFile(ListPlayer listPlayer, PrintWriter pWriter) {
@@ -181,14 +186,12 @@ public class NWList {
 		write.append(listPlayer.getDate());
 
 		pWriter.println(write);
-
-		pWriter.close();
 	}
 
 	public List<ListPlayer> getList() {
 		return list;
 	}
-	
+
 	public ListPlayer getListPlayer(UUID UUID) {
 		for (ListPlayer listPlayer : list) {
 			if (listPlayer.getUUID().equals(UUID)) {
@@ -201,7 +204,7 @@ public class NWList {
 	public ListPlayer getListPlayer(Player player) {
 		return getListPlayer(player.getUniqueId());
 	}
-	
+
 	public ListPlayer getListPlayer(String MCID) {
 		for (ListPlayer listPlayer : list) {
 			if (listPlayer.getName().equalsIgnoreCase(MCID)) {

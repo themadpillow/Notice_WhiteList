@@ -127,11 +127,13 @@ public class MessageList {
 		} catch (IOException e) {
 			throw new RuntimeException("ファイルへの書き込みに失敗しました");
 		}
-		PrintWriter pWriter = new PrintWriter(new BufferedWriter(fWriter));
+		BufferedWriter bWriter = new BufferedWriter(fWriter);
+		PrintWriter pWriter = new PrintWriter(bWriter);
 
 		for (int key : messageMap.keySet()) {
 			writeToFile(key, messageMap.get(key), pWriter);
 		}
+		pWriter.close();
 	}
 
 	private void writeToFile(int number, Message message, PrintWriter pWriter) {
@@ -142,6 +144,5 @@ public class MessageList {
 			pWriter.println("  " + text.replaceAll("§", "\\$"));
 		}
 		pWriter.println();
-		pWriter.close();
 	}
 }
