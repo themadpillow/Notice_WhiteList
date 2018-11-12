@@ -1,6 +1,7 @@
 package nwl;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import lists.messageList.MessageList;
@@ -24,10 +25,28 @@ public class Main extends JavaPlugin {
 			getPlugin().getDataFolder().mkdirs();
 		}
 
+		Bukkit.getScheduler().runTaskLater(this, () -> {
+			Bukkit.getConsoleSender().sendMessage(Prefix + ChatColor.GREEN + "Listの取得・更新を行っています");
+			for (Player player : Bukkit.getOnlinePlayers()) {
+				if (player.isOp()) {
+					player.sendMessage(Prefix + ChatColor.GREEN + "Listの取得・更新を行っています");
+				}
+			}
+		}, 0L);
+
 		setWhiteList(new NWList(ListNames.WhiteList));
 		setBlackList(new NWList(ListNames.BlackList));
 		setNoobList(new NWList(ListNames.NoobList));
 		setMessageList(new MessageList());
+
+		Bukkit.getScheduler().runTaskLater(this, () -> {
+			Bukkit.getConsoleSender().sendMessage(Prefix + ChatColor.GREEN + "Listの取得・更新が完了しました");
+			for (Player player : Bukkit.getOnlinePlayers()) {
+				if (player.isOp()) {
+					player.sendMessage(Prefix + ChatColor.GREEN + "Listの取得・更新が完了しました");
+				}
+			}
+		}, 0L);
 
 		Bukkit.getPluginManager().registerEvents(new Events(), this);
 		getCommand("nwl").setExecutor(new Commands());

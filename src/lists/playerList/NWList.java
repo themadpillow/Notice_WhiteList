@@ -15,6 +15,7 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
+import nwl.GetLatestMCID;
 import nwl.Main;
 
 public class NWList {
@@ -64,9 +65,16 @@ public class NWList {
 			strings[0] = strings[0].substring(1);
 			mark = true;
 		}
+
+		UUID uuid = UUID.fromString(strings[1]);
+		String name = new GetLatestMCID(uuid).get();
+		if (name == null) {
+			name = strings[0];
+		}
+
 		ListPlayer addPlayer = new ListPlayer(
-				strings[0],
-				UUID.fromString(strings[1]),
+				name,
+				uuid,
 				LocalDateTime.parse(strings[2]),
 				mark);
 
