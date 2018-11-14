@@ -78,6 +78,10 @@ public class Commands implements CommandExecutor {
 				sender.sendMessage(ChatColor.GOLD + "UUID: " + ChatColor.BLUE + listPlayer.getUUID().toString());
 				sender.sendMessage(ChatColor.GOLD + "Mark: " + ChatColor.BLUE + listPlayer.isMark());
 				sender.sendMessage(ChatColor.GOLD + "Time: " + ChatColor.BLUE + listPlayer.getDate().toString());
+				sender.sendMessage(ChatColor.GOLD + "Addr: " + listPlayer.getIps().get(0));
+				for (String ip : listPlayer.getIps().subList(1, listPlayer.getIps().size())) {
+					sender.sendMessage(ChatColor.BLUE + "      " + ip);
+				}
 				sender.sendMessage(ChatColor.GOLD + "=========================================");
 			} else {
 				sender.sendMessage(Main.Prefix + listPlayer.getName() + "はWhiteListに存在しません");
