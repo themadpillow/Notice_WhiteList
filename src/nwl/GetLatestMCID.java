@@ -24,7 +24,6 @@ public class GetLatestMCID {
 			http.setRequestMethod("GET");
 			http.connect();
 		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}
