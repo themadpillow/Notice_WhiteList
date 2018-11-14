@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
+import lists.playerList.ListPlayer;
 import net.md_5.bungee.api.ChatColor;
 
 public class Events implements Listener {
@@ -22,9 +23,18 @@ public class Events implements Listener {
 									+ "はBlackListに登録されています");
 				}
 			}
-		} else if (!Main.getWhiteList().contains(e.getPlayer())
-				&& !Main.getNoobList().contains(e.getPlayer())) {
-			Main.getNoobList().add(e.getPlayer());
+		} else {
+			Bukkit.getScheduler().runTaskLater(Main.getPlugin(), () -> {
+				ListPlayer joinPlayer;
+				if ((joinPlayer = Main.getWhiteList().getListPlayer(e.getPlayer())) == null
+						&& (joinPlayer = Main.getNoobList().getListPlayer(e.getPlayer())) == null) {
+					Main.getNoobList().add(e.getPlayer());
+				} else {
+					if (!joinPlayer.getIps().contains(e.getPlayer().getAddress().getAddress().getHostName())) {
+						joinPlayer.addIp(e.getPlayer().getAddress().getAddress().getHostName());
+					}
+				}
+			}, 0L);
 		}
 	}
 }

@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -72,11 +73,17 @@ public class NWList {
 			name = strings[0];
 		}
 
+		String[] ips = null;
+		if (strings.length > 3) {
+			ips = Arrays.copyOfRange(strings, 3, strings.length);
+		}
+
 		ListPlayer addPlayer = new ListPlayer(
 				name,
 				uuid,
 				LocalDateTime.parse(strings[2]),
-				mark);
+				mark,
+				ips);
 
 		list.add(addPlayer);
 	}
@@ -192,6 +199,10 @@ public class NWList {
 		write.append(listPlayer.getUUID());
 		write.append(" ");
 		write.append(listPlayer.getDate());
+		for (String ip : listPlayer.getIps()) {
+			write.append(" ");
+			write.append(ip);
+		}
 
 		pWriter.println(write);
 	}

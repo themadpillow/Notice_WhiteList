@@ -1,6 +1,9 @@
 package lists.playerList;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -11,17 +14,21 @@ public class ListPlayer {
 	private UUID uuid;
 	private LocalDateTime date;
 	private boolean mark;
+	private List<String> ips = new ArrayList<>();
 
-	public ListPlayer(String name, UUID uuid, LocalDateTime localDateTime, boolean mark) {
+	public ListPlayer(String name, UUID uuid, LocalDateTime localDateTime, boolean mark, String... ips) {
 		this.setName(name);
 		this.setUUID(uuid);
 		this.setDate(localDateTime);
 		this.setMark(mark);
+		if (ips != null) {
+			this.ips.addAll(Arrays.asList(ips));
+		}
 	}
 
 	public ListPlayer(Player p) {
 		this(p.getName(), p.getUniqueId(),
-				LocalDateTime.now(), false);
+				LocalDateTime.now(), false, p.getAddress().getAddress().getHostName());
 	}
 
 	public void sendMessage(String... messages) {
@@ -61,5 +68,13 @@ public class ListPlayer {
 
 	public void setMark(boolean mark) {
 		this.mark = mark;
+	}
+
+	public List<String> getIps() {
+		return ips;
+	}
+
+	public void addIp(String ip) {
+		ips.add(ip);
 	}
 }

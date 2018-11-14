@@ -23,7 +23,7 @@ public class Main extends JavaPlugin {
 		if (!getPlugin().getDataFolder().exists()) {
 			getPlugin().getDataFolder().mkdirs();
 		}
-		
+
 		setWhiteList(new NWList(ListNames.WhiteList));
 		setBlackList(new NWList(ListNames.BlackList));
 		setNoobList(new NWList(ListNames.NoobList));
