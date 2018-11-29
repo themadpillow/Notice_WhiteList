@@ -1,6 +1,7 @@
 package nwl;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import lists.messageList.MessageList;
@@ -31,6 +32,13 @@ public class Main extends JavaPlugin {
 
 		Bukkit.getPluginManager().registerEvents(new Events(), this);
 		getCommand("nwl").setExecutor(new Commands());
+		
+		FileConfiguration configuration = this.getConfig();
+		if(configuration.get("sound") == null) {
+			configuration.set("sound", 1.0);
+			this.saveConfig();
+		}
+		messageList.setSound((float) configuration.get("sound"));
 	}
 
 	@Override

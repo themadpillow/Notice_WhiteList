@@ -17,6 +17,7 @@ import nwl.Main;
 public class MessageList {
 	private Map<Integer, Message> messageMap;
 	private File file;
+	private float sound;
 
 	public MessageList() {
 		messageMap = new HashMap<>();
@@ -144,5 +145,13 @@ public class MessageList {
 			pWriter.println("  " + text.replaceAll("§", "\\$"));
 		}
 		pWriter.println();
+	}
+
+	public float getSound() {
+		return sound;
+	}
+
+	public void setSound(float sound) {
+		this.sound = sound;
 	}
 }

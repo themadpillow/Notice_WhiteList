@@ -3,6 +3,7 @@ package nwl;
 import java.util.Map;
 import java.util.Set;
 
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -192,6 +193,7 @@ public class Commands implements CommandExecutor {
 					if (!listPlayer.isMark()) {
 						listPlayer.sendMessage(message.getTitle());
 						listPlayer.sendMessage(texts);
+						listPlayer.playSound(Sound.BLOCK_ANVIL_PLACE, Main.getMessageList().getSound());
 					}
 				}
 				sender.sendMessage(Main.Prefix + number + "番:" + message.getTitle() + "を送信しました");

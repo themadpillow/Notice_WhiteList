@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 public class ListPlayer {
@@ -35,6 +36,13 @@ public class ListPlayer {
 		Player player;
 		if ((player = Bukkit.getServer().getPlayer(uuid)) != null) {
 			player.sendMessage(messages);
+		}
+	}
+	
+	public void playSound(Sound sound, float volume) {
+		Player player;
+		if ((player = Bukkit.getServer().getPlayer(uuid)) != null) {
+			player.playSound(player.getLocation(), sound, volume, volume);
 		}
 	}
 
