@@ -32,13 +32,13 @@ public class Main extends JavaPlugin {
 
 		Bukkit.getPluginManager().registerEvents(new Events(), this);
 		getCommand("nwl").setExecutor(new Commands());
-		
+
 		FileConfiguration configuration = this.getConfig();
-		if(configuration.get("sound") == null) {
+		if (configuration.get("sound") == null) {
 			configuration.set("sound", 1.0);
 			this.saveConfig();
 		}
-		messageList.setSound((float) configuration.get("sound"));
+		messageList.setSound((float) (configuration.getDouble("sound")));
 	}
 
 	@Override
