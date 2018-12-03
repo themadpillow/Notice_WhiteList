@@ -1,5 +1,5 @@
 ﻿name: Notice_WhiteList
-version: 1.4.0
+version: 1.4.1
 main: nwl.Main
 commands:
  nwl:
